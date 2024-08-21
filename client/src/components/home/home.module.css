@@ -1,0 +1,15 @@
+.container{
+	width: 100vw;
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.wrapper{
+	width: 90%;
+	height: 90%;
+	margin: 0 auto;
+	display: flex;
+	background-color: rgb(193, 218, 218);
+}
