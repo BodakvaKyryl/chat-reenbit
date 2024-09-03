@@ -26,7 +26,7 @@ const Login = () => {
       }
     } catch (error) {
       setError((prev) => true);
-      setTimeout(() => setError((prev) => false), 2000);
+      setTimeout(() => setError((prev) => false), 1000);
       console.log(error);
     }
   };

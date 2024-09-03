@@ -3,7 +3,7 @@
   --secondary-color: #f4f4f4;
   --accent-color: #333;
   --accent-color-secondary: #9b9b9b;
-  --error-color: #ff000076;
+  --error-color: #ff29299a;
 }
 
 .container {
@@ -103,8 +103,8 @@
 }
 
 .errorMessage {
-  height: 70px;
-  width: 250px;
+  height: auto;
+  width: auto;
   text-align: center;
   border-radius: 20px;
   line-height: 1.5rem;

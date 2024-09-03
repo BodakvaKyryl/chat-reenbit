@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
+import { register } from '../../redux/authSlice';
 import classes from './register.module.css';
 
 const Register = () => {
@@ -9,6 +11,7 @@ const Register = () => {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState(false);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleRegister = async (e) => {
     e.preventDefault();
@@ -20,15 +23,18 @@ const Register = () => {
         body: JSON.stringify({ username, email, password }),
       });
       const data = await response.json();
-      if (data.status === 'ok') {
-        localStorage.setItem('token', data.token);
-        navigate('/');
-      } else {
-        setError(true);
-      }
+      console.log(data);
+      dispatch(register(data));
+      navigate('/');
+      // if (data.status === 'ok') {
+      //   localStorage.setItem('token', data.token);
+      //   navigate('/');
+      // } else {
+      //   setError(true);
+      // }
     } catch (error) {
       setError((prev) => true);
-      setTimeout(() => setError((prev) => false), 2000);
+      setTimeout(() => setError((prev) => false), 1000);
       console.log(error);
     }
   };
