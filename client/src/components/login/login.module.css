@@ -3,7 +3,7 @@
   --secondary-color: #f4f4f4;
   --accent-color: #333;
   --accent-color-secondary: #9b9b9b;
-  --error-color: rgba(255, 0, 0, 0.463);
+  --error-color: #ff000076;
 }
 
 .container {
@@ -26,7 +26,7 @@
   justify-content: center;
   padding: 2rem;
   border: 0px solid var(--accent-color);
-  height: 400px;
+  height: auto;
   width: 40rem;
   background-color: var(--secondary-color);
   border-radius: 20px;
