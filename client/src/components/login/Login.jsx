@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
+import { login } from '../../redux/authSlice';
 import classes from './login.module.css';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState(false);
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
@@ -18,12 +20,15 @@ const Login = () => {
         body: JSON.stringify({ email, password }),
       });
       const data = await response.json();
-      if (data.status === 'ok') {
-        localStorage.setItem('token', data.token);
-        navigate('/');
-      } else {
-        setError(true);
-      }
+      console.log(data);
+      dispatch(login(data));
+      navigate('/');
+      // if (data.status === 'ok') {
+      //   localStorage.setItem('token', data.token);
+      //   navigate('/');
+      // } else {
+      //   setError(true);
+      // }
     } catch (error) {
       setError((prev) => true);
       setTimeout(() => setError((prev) => false), 1000);
