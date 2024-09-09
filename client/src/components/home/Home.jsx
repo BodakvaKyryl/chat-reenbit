@@ -27,10 +27,37 @@ const Home = () => {
       }
     };
     fetchUserConversations();
-    
   }, [token, user._id]);
 
-  console.log(lastConversationClicked);
+  useEffect(() => {
+    const fetchMessages = async () => {
+      try {
+        const res = await fetch(`http://localhost:5000/message/${lastConversationClicked._id}`, {
+          method: 'GET',
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        const messages = await res.json();
+        setMessages((prev) => messages);
+      } catch (error) {
+        console.error(error.message);
+      }
+    };
+    lastConversationClicked && fetchMessages();
+  }, [lastConversationClicked, token]);
+
+  useEffect(() => {
+    const fetchOtherUser = async () => {
+      try {
+        const otherUserId = lastConversationClicked?.members?.find((member) => member !== user._id);
+        const res = await fetch(`http://localhost:5000/user/find/${otherUserId}`);
+        const otherUser = await res.json();
+        setOtherUser((prev) => otherUser);
+      } catch (error) {
+        console.error(error.message);
+      }
+    };
+    lastConversationClicked && fetchOtherUser();
+  }, [lastConversationClicked, user._id]);
 
   return (
     <div className={classes.container}>
@@ -43,17 +70,20 @@ const Home = () => {
             </div>
           ))}
         </div>
-
         <div className={classes.right}>
-          <div className={classes.otherUserData}>
-            <img src={avatar} alt='avatar' className={classes.otherUserImg} />
-            <h4 className={classes.personUsername}>Julia</h4>
-          </div>
-
-          <div className={classes.messages}>
-            <Message />
-          </div>
-
+          {lastConversationClicked ? (
+            <>
+              <div className={classes.otherUserData}>
+                <img src={avatar} alt='avatar' className={classes.otherUserImg} />
+                <h4 className={classes.personUsername}>Julia</h4>
+              </div>
+              <div className={classes.messages}>
+                <Message />
+              </div>
+            </>
+          ) : (
+            <h1>Select a conversation</h1>
+          )}
           <div className={classes.inputAddBtn}>
             <input type='text' placeholder='Type a message...' className={classes.input} />
             <button className={classes.submitBtn}>Send</button>

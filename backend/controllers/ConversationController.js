@@ -33,9 +33,9 @@ ConversationRouter.get('/find/:userId', verifyToken, async (req, res) => {
 
 ConversationRouter.get('/:convoId', verifyToken, async (req, res) => {
   try {
-    const conversations = await Conversation.findById(req.params.convoId);
+    const conversation = await Conversation.findById(req.params.convoId);
     
-    if (conversations.members.includes(req.user.id)) return res.status(200).json(conversations);
+    if (conversation.members.includes(req.user.id)) return res.status(200).json(conversation);
     else return res.status(403).json({ msg: 'You can get only your conversations' });
   } catch (error) {
     return res.status(500).json(error.message);

@@ -2,7 +2,7 @@ const User = require('../models/User');
 
 const userController = require('express').Router();
 
-userController.get('/find:id', async (req, res) => {
+userController.get('/find/:id', async (req, res) => {
   try {
     const user = await User.findById(req.params.id);
     const { password, ...others } = user._doc;
