@@ -78,11 +78,22 @@ const Home = () => {
                 <h4 className={classes.personUsername}>Julia</h4>
               </div>
               <div className={classes.messages}>
-                <Message />
+                {messages?.length > 0 ? (
+                  messages?.map((message) => (
+                    <Message
+                      messages={messages}
+                      key={message._id}
+                      own={message.senderId === user._id}
+                      message={message}
+                    />
+                  ))
+                ) : (
+                  <h1 className={classes.messageHint}>No messages</h1>
+                )}
               </div>
             </>
           ) : (
-            <h1>Select a conversation</h1>
+            <h1 className={classes.messageHint}>Select a conversation</h1>
           )}
           <div className={classes.inputAddBtn}>
             <input type='text' placeholder='Type a message...' className={classes.input} />
