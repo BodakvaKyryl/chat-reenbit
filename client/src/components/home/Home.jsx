@@ -59,6 +59,28 @@ const Home = () => {
     lastConversationClicked && fetchOtherUser();
   }, [lastConversationClicked, user._id]);
 
+  const handlePostMessage = async () => {
+    try {
+      const res = await fetch(`http://localhost:5000/message`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          senderId: user._id,
+          conversationId: lastConversationClicked._id,
+          messageText: message,
+        }),
+      });
+      const data = await res.json();
+      setMessages((prev) => [...prev, data]);
+      setMessage((prev) => '');
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
+
   return (
     <div className={classes.container}>
       <div className={classes.wrapper}>
@@ -96,8 +118,16 @@ const Home = () => {
             <h1 className={classes.messageHint}>Select a conversation</h1>
           )}
           <div className={classes.inputAddBtn}>
-            <input type='text' placeholder='Type a message...' className={classes.input} />
-            <button className={classes.submitBtn}>Send</button>
+            <input
+              onChange={(e) => setMessage(e.target.value)}
+              value={message}
+              type='text'
+              placeholder='Type a message...'
+              className={classes.input}
+            />
+            <button onClick={handlePostMessage} className={classes.submitBtn}>
+              Send
+            </button>
           </div>
         </div>
       </div>

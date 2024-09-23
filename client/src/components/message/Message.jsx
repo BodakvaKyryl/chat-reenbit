@@ -13,7 +13,7 @@ const Message = ({ own, message }) => {
   return (
     <>
       {!own && (
-        <div className={classes.container}>
+        <div ref={ref} className={classes.container}>
           <div className={classes.wrapper}>
             <img src={avatar} alt='avatar' className={classes.personImg} />
             <div className={classes.messageAndTimeAgo}>
