@@ -26,12 +26,6 @@ const Register = () => {
       console.log(data);
       dispatch(register(data));
       navigate('/');
-      // if (data.status === 'ok') {
-      //   localStorage.setItem('token', data.token);
-      //   navigate('/');
-      // } else {
-      //   setError(true);
-      // }
     } catch (error) {
       setError((prev) => true);
       setTimeout(() => setError((prev) => false), 1000);

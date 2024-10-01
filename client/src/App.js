@@ -6,14 +6,14 @@ import Login from './components/login/Login';
 import Register from './components/register/Register';
 
 function App() {
-  const { user } = useSelector((state) => state.auth);
+  const { token } = useSelector((state) => state.auth);
 
   return (
     <div>
       <Routes>
-        <Route path='/' element={user ? <Home /> : <Navigate to='/login' />} />
-        <Route path='/login' element={!user ? <Login /> : <Navigate to='/' />} />
-        <Route path='/register' element={!user ? <Register /> : <Navigate to='/' />} />
+        <Route path='/' element={token ? <Home /> : <Navigate to='/login' />} />
+        <Route path='/login' element={!token ? <Login /> : <Navigate to='/' />} />
+        <Route path='/register' element={!token ? <Register /> : <Navigate to='/' />} />
       </Routes>
     </div>
   );

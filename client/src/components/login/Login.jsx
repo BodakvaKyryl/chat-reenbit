@@ -20,19 +20,16 @@ const Login = () => {
         body: JSON.stringify({ email, password }),
       });
       const data = await response.json();
-      console.log(data);
+      console.log('API Response:', data); // Log API response
+      if (!data || !data.token) {
+        throw new Error('Invalid response from server');
+      }
       dispatch(login(data));
-      navigate('/');
-      // if (data.status === 'ok') {
-      //   localStorage.setItem('token', data.token);
-      //   navigate('/');
-      // } else {
-      //   setError(true);
-      // }
+      navigate('/'); // Navigate after successful login
     } catch (error) {
-      setError((prev) => true);
-      setTimeout(() => setError((prev) => false), 1000);
-      console.log(error);
+      setError(true);
+      setTimeout(() => setError(false), 1000);
+      console.error(error);
     }
   };
 
@@ -40,7 +37,7 @@ const Login = () => {
     <div className={classes.container}>
       <div className={classes.wrapper}>
         <h2 className={classes.title}>Login</h2>
-        <form className={classes.form} onSubmit={handleLogin}>
+        <form onSubmit={handleLogin} className={classes.form}>
           <label htmlFor='email'>
             <input
               onChange={(e) => setEmail((prev) => e.target.value)}

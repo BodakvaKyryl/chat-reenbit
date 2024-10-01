@@ -1,12 +1,3 @@
-/* Ensure the root and body take full height */
-html,
-body,
-#root {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-}
-
 .container {
   height: 100%;
   width: 100%;
@@ -57,7 +48,6 @@ body,
 .messages {
   overflow-y: auto;
   padding: 0.4rem 0.8rem;
-  flex-grow: 1;
 }
 
 .otherUserImg {
