@@ -56,7 +56,7 @@ const createToken = (user) => {
   };
 
   const token = jwt.sign(payload, process.env.JWT_SECRET_KEY, {
-    expiresIn: '7d',
+    expiresIn: '30d',
   });
 
   return token;

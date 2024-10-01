@@ -1,0 +1,151 @@
+:root {
+  --primary-color: #6a6ac2;
+  --secondary-color: #f4f4f4;
+  --accent-color: #333;
+  --accent-color-secondary: #9b9b9b;
+  --error-color: #ff29299a;
+}
+
+.container {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--primary-color);
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 999;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  border: 0px solid var(--accent-color);
+  height: auto;
+  width: 40rem;
+  background-color: var(--secondary-color);
+  border-radius: 20px;
+}
+
+.wrapper h2 {
+  margin-bottom: 20px;
+  color: var(--accent-color);
+  font-weight: bold;
+  background-color: var(--secondary-color);
+}
+ /**/
+
+.wrapper form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  background-color: var(--secondary-color);
+}
+
+.wrapper form input {
+  padding: 0.75rem 1.25rem;
+  background-color: transparent;
+  border: 2px solid var(--accent-color-secondary);
+  border-radius: 12px;
+  background-color: var(--secondary-color);
+}
+
+.wrapper form input:focus {
+  outline: none;
+  border-width: 2px;
+  border-color: var(--accent-color);
+}
+
+.submitBtn {
+  outline: none;
+  border: 1px solid transparent;
+  padding: 0.75rem 2rem;
+  border-radius: 20px;
+  background-color: var(--primary-color);
+  color: #fff;
+  cursor: pointer;
+  margin: 6px 0;
+  margin-bottom: 3px;
+  transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+.submitBtn:hover {
+  border-color: var(--primary-color);
+  background-color: #fff;
+  color: var(--primary-color);
+}
+
+.wrapper form a {
+  text-decoration: none;
+  color: inherit;
+  margin-top: 15px;
+  background-color: var(--secondary-color);
+}
+
+.register {
+  width: 100px;
+  border-bottom: 1px solid var(--accent-color-secondary);
+  padding-bottom: 0.2rem;
+  margin: 0 auto;
+  margin-top: 10px;
+  text-align: center;
+  background-color: var(--secondary-color);
+}
+
+.register:hover {
+  color: var(--accent-color-secondary);
+}
+
+.errorMessage {
+  height: auto;
+  width: auto;
+  text-align: center;
+  border-radius: 20px;
+  line-height: 1.5rem;
+  padding: 0.75rem 1.5rem;
+  background-color: var(--error-color);
+  color: #fff;
+  position: absolute;
+  top: 5rem;
+  right: 5rem;
+}
+
+@media only screen and (max-width: 600px) {
+  .wrapper {
+    width: 90%;
+    padding: 1rem;
+  }
+  .wrapper form input {
+    padding: 0.5rem 1rem;
+  }
+  .submitBtn {
+    padding: 0.5rem 1.5rem;
+  }
+}
+
+@media only screen and (min-width: 601px) and (max-width: 992px) {
+  .wrapper {
+    width: 70%;
+    padding: 1.5rem;
+  }
+  .wrapper form input {
+    padding: 0.75rem 1.25rem;
+  }
+  .submitBtn {
+    padding: 0.75rem 2rem;
+  }
+}
+
+@media only screen and (min-width: 993px) {
+  .wrapper {
+    width: 40%;
+    padding: 2rem;
+  }
+}
