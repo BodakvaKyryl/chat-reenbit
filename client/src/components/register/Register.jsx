@@ -23,7 +23,7 @@ const Register = () => {
         body: JSON.stringify({ username, email, password }),
       });
       const data = await response.json();
-      console.log(data);
+      // console.log(data);
       dispatch(register(data));
       navigate('/');
     } catch (error) {

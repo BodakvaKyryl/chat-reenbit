@@ -20,7 +20,7 @@ const Login = () => {
         body: JSON.stringify({ email, password }),
       });
       const data = await response.json();
-      console.log('API Response:', data); // Log API response
+      // console.log('API Response:', data); // Log API response
       if (!data || !data.token) {
         throw new Error('Invalid response from server');
       }

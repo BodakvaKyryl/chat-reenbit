@@ -20,7 +20,6 @@ const Home = () => {
     socket.current = io('ws://localhost:8900');
 
     socket.current.on('getMessage', (data) => {
-      console.log(data);
       setComingMessage({
         senderId: data.senderId,
         messageText: data.messageText,
@@ -116,8 +115,6 @@ const Home = () => {
       console.error(error);
     }
   };
-
-  console.log('thats gay', messages);
 
   return (
     <div className={classes.container}>
